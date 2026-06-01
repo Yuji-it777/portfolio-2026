@@ -51,17 +51,31 @@ document.addEventListener('mousemove', (e) => {
 });
 
 const contactForm = document.querySelector('.contact-form');
+const formFeedback = document.createElement('div');
+formFeedback.className = 'form-feedback';
+contactForm.appendChild(formFeedback);
+
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(contactForm);
+  const submitBtn = contactForm.querySelector('.btn');
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
+
   fetch(contactForm.action, {
     method: 'POST',
     body: formData,
     headers: { 'Accept': 'application/json' }
   }).then(() => {
-    contactForm.innerHTML = '<p style="color: var(--accent); font-size: 1.2rem; text-align: center; padding: 2rem 0;">Thanks! I\'ll get back to you soon.</p>';
+    formFeedback.textContent = "Thanks! I'll get back to you soon.";
+    formFeedback.className = 'form-feedback success';
+    contactForm.reset();
   }).catch(() => {
-    contactForm.innerHTML = '<p style="color: #ff4444; font-size: 1.2rem; text-align: center; padding: 2rem 0;">Oops! Something went wrong. Please try again.</p>';
+    formFeedback.textContent = 'Oops! Something went wrong. Please try again.';
+    formFeedback.className = 'form-feedback error';
+  }).finally(() => {
+    submitBtn.textContent = 'Send Message';
+    submitBtn.disabled = false;
   });
 });
 

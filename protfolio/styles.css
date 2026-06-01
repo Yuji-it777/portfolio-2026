@@ -648,6 +648,26 @@ body {
   color: var(--text-secondary);
 }
 
+.form-feedback {
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.8rem;
+  border-radius: 4px;
+  display: none;
+}
+
+.form-feedback.success {
+  display: block;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.form-feedback.error {
+  display: block;
+  color: #ff4444;
+  border: 1px solid #ff4444;
+}
+
 .btn {
   padding: 1rem 2rem;
   background: transparent;
