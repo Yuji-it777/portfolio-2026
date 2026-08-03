@@ -10,14 +10,12 @@
   padding: 0;
 }
 
-html,
-body,
-#root {
+html, body, #root {
   background: #0C0C0C;
-}
-
-body {
   font-family: 'Kanit', sans-serif;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .hero-heading {

@@ -80,6 +80,20 @@ const PROJECTS: Project[] = [
       { label: 'REST APIs' },
     ],
   },
+  {
+    number: '05',
+    name: 'A-Mayzayn POS System',
+    category: 'Restaurant / POS',
+    image: '/assets/image.png',
+    description:
+      'A production React + Tailwind point-of-sale and cash register app for A-Mayzayn, a mocktail bar and restaurant in Marrakech\u2019s Guiliz district. Order management (dine-in / takeaway), live inventory tracking, automatic 10% TVA calculations, and a sales dashboard.',
+    tags: [
+      { label: 'React' },
+      { label: 'TypeScript' },
+      { label: 'Vite' },
+      { label: 'Tailwind CSS' },
+    ],
+  },
 ]
 
 const cardVariants = {

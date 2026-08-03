@@ -1,57 +1,109 @@
-import FadeIn from './FadeIn'
-import Magnet from './Magnet'
-import ContactButton from './ContactButton'
+import { useEffect, useRef, useState, useMemo } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Navbar from './Navbar'
+import { useTypewriter } from '../hooks/useTypewriter'
+import { ArrowDown } from 'lucide-react'
+import { useTranslation } from '../context/LanguageContext'
 
-const navLinks = ['About', 'Services', 'Projects', 'Contact']
+gsap.registerPlugin(ScrollTrigger)
+
+function HeroButton({ href, primary, children }: { href: string; primary?: boolean; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      className={`inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs uppercase tracking-[0.2em] rounded-full no-underline border transition-all duration-300 ${
+        primary
+          ? 'text-amber-400 border-amber-600/50 hover:bg-amber-600 hover:text-black'
+          : 'text-white/60 border-white/20 hover:bg-white/10 hover:text-white hover:border-white/30'
+      }`}
+    >
+      {children}
+    </a>
+  )
+}
 
 export default function HeroSection() {
+  const { t } = useTranslation()
+  const [visible, setVisible] = useState(false)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  const phrases = useMemo(() => [
+    t('hero.phrase.0'),
+    t('hero.phrase.1'),
+    t('hero.phrase.2'),
+    t('hero.phrase.3'),
+  ], [t])
+
+  const { displayed, done } = useTypewriter({
+    phrases,
+    typeSpeed: 38,
+    deleteSpeed: 20,
+    pauseAfterType: 2000,
+    startDelay: 600,
+  })
+
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 1200)
+    return () => clearTimeout(t)
+  }, [])
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.hero-label', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.5, ease: 'power2.out' })
+      gsap.fromTo('.hero-name', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 0.7, ease: 'power3.out' })
+      gsap.fromTo('.hero-buttons', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, delay: 1.4, ease: 'power2.out' })
+
+      gsap.to('.hero-parallax', {
+        yPercent: -15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#home',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      })
+    })
+
+    return () => ctx.revert()
+  }, [visible])
+
   return (
-    <section className="h-screen flex flex-col overflow-x-clip relative">
-      <FadeIn as="nav" delay={0} y={-20} className="flex justify-between items-start px-6 md:px-10 pt-6 md:pt-8 w-full">
-        {navLinks.map((link) => (
-          <a
-            key={link}
-            href={`#${link.toLowerCase()}`}
-            className="text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity duration-200"
-          >
-            {link}
-          </a>
-        ))}
-      </FadeIn>
+    <section id="home" className="relative min-h-screen flex flex-col justify-end md:justify-center pb-16 md:pb-0 px-6 md:px-10 snap-start overflow-hidden">
+      <Navbar />
 
-      <div className="flex-1 flex flex-col justify-center relative overflow-hidden">
-        <FadeIn as="div" delay={0.15} y={40} className="overflow-hidden w-full">
-          <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-6 sm:mt-4 md:-mt-5">
-            Hi, i&apos;m Mouad
-          </h1>
-        </FadeIn>
+      <div ref={contentRef} className="max-w-6xl mx-auto w-full hero-parallax">
+        <p className="select-none mb-4 text-white/30 text-xs uppercase tracking-[0.3em] hero-label" style={{ fontFamily: 'var(--font-body)' }}>
+          {t('hero.portfolio')} {new Date().getFullYear()}
+        </p>
 
-        <Magnet
-          padding={150}
-          strength={3}
-          activeTransition="transform 0.3s ease-out"
-          inactiveTransition="transform 0.6s ease-in-out"
-          className="absolute left-1/2 -translate-x-1/2 z-10 w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px] top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0"
-        >
-          <FadeIn delay={0.6} y={30} className="w-full h-full">
-            <img
-              src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
-              alt="Portrait"
-              className="w-full h-auto object-contain"
-              loading="lazy"
-            />
-          </FadeIn>
-        </Magnet>
+        <h1 className="font-heading text-white text-[clamp(3.5rem,12vw,8rem)] leading-[0.9] tracking-tight mb-6 hero-name">
+          Mouad
+        </h1>
 
-        <div className="flex justify-between items-end pb-7 sm:pb-8 md:pb-10 px-6 md:px-10">
-          <FadeIn as="p" delay={0.35} y={20} className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px]" style={{ fontSize: 'clamp(0.75rem, 1.4vw, 1.5rem)' }}>
-            a 3d creator driven by crafting striking and unforgettable projects
-          </FadeIn>
+        <p className="text-white/60 max-w-xl text-sm md:text-base leading-relaxed min-h-[1.5em]">
+          {displayed}
+          {!done && (
+            <span className="inline-block w-[1.5px] h-[1em] bg-white/80 align-middle ml-[2px] animate-pulse" />
+          )}
+        </p>
 
-          <FadeIn delay={0.5} y={20}>
-            <ContactButton />
-          </FadeIn>
+        <div className="flex flex-wrap gap-3 mt-8 hero-buttons">
+          <HeroButton href="#work" primary>{t('hero.view_work')}</HeroButton>
+          <HeroButton href="#contact">{t('hero.get_in_touch')}</HeroButton>
         </div>
+      </div>
+
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        style={{
+          opacity: visible ? 1 : 0,
+          transition: 'opacity 0.6s ease 1.5s',
+        }}
+      >
+        <span className="text-white/20 text-[10px] uppercase tracking-[0.3em] animate-pulse">{t('hero.scroll')}</span>
+        <ArrowDown className="w-4 h-4 text-white/20 animate-bounce" />
       </div>
     </section>
   )
