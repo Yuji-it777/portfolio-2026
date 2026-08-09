@@ -41,7 +41,7 @@ function ImageTile({ src }: { src: string }) {
           className="w-[420px] h-[270px] object-cover transition-transform duration-700 group-hover:scale-110"
           loading="lazy"
           decoding="async"
-          fetchpriority="low"
+          fetchPriority="low"
         />
       </picture>
       <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />

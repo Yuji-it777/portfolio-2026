@@ -21,7 +21,7 @@ const PROJECTS: Project[] = [
     number: '01',
     name: 'Maison Tislit',
     category: 'E-commerce',
-    image: 'https://portfolio-2026-opal-nine.vercel.app/assets/project-screenshot.png',
+    image: '/assets/project-screenshot.png',
     description:
       'A traditional Moroccan fashion e-commerce platform showcasing handcrafted attire and cultural clothing for global customers.',
     tags: [
@@ -30,28 +30,32 @@ const PROJECTS: Project[] = [
       { label: 'Vite' },
       { label: 'Figma' },
     ],
+    link: 'https://maisontislit.com',
+    linkLabel: 'Live Project',
   },
   {
     number: '02',
     name: 'HananCare',
     category: 'Healthcare',
-    image: 'https://portfolio-2026-opal-nine.vercel.app/assets/health-app.png',
+    image: '/assets/health-app.png',
     description:
-      'A French-language healthcare platform connecting patients with medical professionals, featuring appointment booking and health tracking tools.',
+      'A healthcare platform connecting patients with medical professionals in Morocco, featuring appointment booking and health tracking tools.',
     tags: [
       { label: 'JavaScript' },
       { label: 'CSS3' },
       { label: 'Figma' },
       { label: 'Photoshop' },
     ],
+    link: 'https://hanancare.ma',
+    linkLabel: 'Live Project',
   },
   {
     number: '03',
     name: 'A-Mayzayn',
     category: 'Food & Dining',
-    image: 'https://portfolio-2026-opal-nine.vercel.app/assets/greentech.png',
+    image: '/assets/greentech.png',
     description:
-      'A restaurant discovery and ordering platform celebrating authentic Surinamese cuisine in the heart of Marrakech.',
+      'A restaurant discovery and ordering platform celebrating authentic Moroccan cuisine in the heart of Marrakech.',
     tags: [
       { label: 'Figma' },
       { label: 'Illustrator' },
@@ -67,7 +71,7 @@ const PROJECTS: Project[] = [
     number: '04',
     name: 'AI Job Hunter',
     category: 'Automation',
-    image: 'https://portfolio-2026-opal-nine.vercel.app/assets/job-hunter.png',
+    image: '/assets/job-hunter.png',
     description:
       'Built an automated pipeline that fetches remote job listings daily, scores them 1-10 using AI based on my skill profile, filters top matches, generates personalized cover letters, and delivers everything to Telegram instantly \u2014 reducing job searching time by 90%.',
     tags: [
@@ -79,6 +83,8 @@ const PROJECTS: Project[] = [
       { label: 'JavaScript' },
       { label: 'REST APIs' },
     ],
+    link: 'https://aijobhunter.dev',
+    linkLabel: 'Live Project',
   },
   {
     number: '05',
@@ -101,7 +107,7 @@ const cardVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: 'easeOut', delay: i * 0.15 },
+    transition: { duration: 0.6, ease: 'easeOut' as const, delay: i * 0.15 },
   }),
 }
 
