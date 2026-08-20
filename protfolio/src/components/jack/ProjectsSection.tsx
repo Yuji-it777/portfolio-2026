@@ -30,7 +30,7 @@ const PROJECTS: Project[] = [
       { label: 'Vite' },
       { label: 'Figma' },
     ],
-    link: 'https://maisontislit.com',
+    link: 'https://maison-tislit-demo.netlify.app/',
     linkLabel: 'Live Project',
   },
   {
