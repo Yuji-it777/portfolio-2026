@@ -73,7 +73,7 @@ const PROJECTS: Project[] = [
     category: 'Automation',
     image: '/assets/job-hunter.png',
     description:
-      'Built an automated pipeline that fetches remote job listings daily, scores them 1-10 using AI based on my skill profile, filters top matches, generates personalized cover letters, and delivers everything to Telegram instantly \u2014 reducing job searching time by 90%.',
+      'Built an automated pipeline that fetches remote job listings daily, scores them 1-10 using AI based on my skill profile, filters top matches, generates personalized cover letters, and delivers everything to Telegram instantly — reducing job searching time by 90%.',
     tags: [
       { label: 'n8n' },
       { label: 'OpenRouter AI' },
@@ -92,13 +92,29 @@ const PROJECTS: Project[] = [
     category: 'Restaurant / POS',
     image: '/assets/image.png',
     description:
-      'A production React + Tailwind point-of-sale and cash register app for A-Mayzayn, a mocktail bar and restaurant in Marrakech\u2019s Guiliz district. Order management (dine-in / takeaway), live inventory tracking, automatic 10% TVA calculations, and a sales dashboard.',
+      'A production React + Tailwind point-of-sale and cash register app for A-Mayzayn, a mocktail bar and restaurant in Marrakech\'s Guiliz district. Order management (dine-in / takeaway), live inventory tracking, automatic 10% TVA calculations, and a sales dashboard.',
     tags: [
       { label: 'React' },
       { label: 'TypeScript' },
       { label: 'Vite' },
       { label: 'Tailwind CSS' },
     ],
+  },
+  {
+    number: '06',
+    name: 'Ember & Bean',
+    category: 'Food & Dining',
+    image: '/assets/ember-bean-screenshot.png',
+    description:
+      'A specialty coffee roastery website showcasing small-batch roasted beans, artisanal brewing methods, and a reservation system for café seating. Features brand identity, menu exploration, and custom drink building.',
+    tags: [
+      { label: 'React' },
+      { label: 'Tailwind CSS' },
+      { label: 'Framer Motion' },
+      { label: 'Vite' },
+    ],
+    link: 'https://ember-bean-demo.netlify.app/',
+    linkLabel: 'Live Project',
   },
 ]
 
