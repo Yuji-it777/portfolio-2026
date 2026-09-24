@@ -9,6 +9,8 @@ const IMAGES_ROW1 = [
   '/marquee/servis-flayer.jpg',
   '/marquee/stander.jpg',
   '/marquee/packaging.jpg',
+  '/marquee/lamsa-pay-home.jpg',
+  '/marquee/lamsa-send-qr.jpg',
 ]
 
 const IMAGES_ROW2 = [
@@ -20,6 +22,7 @@ const IMAGES_ROW2 = [
   '/marquee/servis-flayer.jpg',
   '/marquee/banner-mason.jpg',
   '/marquee/stander.jpg',
+  '/marquee/lamsa-request-qr.jpg',
 ]
 
 function doubled<T>(arr: T[]): T[] {

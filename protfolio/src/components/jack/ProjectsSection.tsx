@@ -14,6 +14,7 @@ interface Project {
   tags: TechTag[]
   link?: string
   linkLabel?: string
+  badge?: string
 }
 
 const PROJECTS: Project[] = [
@@ -116,6 +117,16 @@ const PROJECTS: Project[] = [
     link: 'https://ember-bean-demo.netlify.app/',
     linkLabel: 'Live Project',
   },
+  {
+    number: '07',
+    name: 'Lamsa',
+    category: 'Mobile App • Demo',
+    image: '/assets/wallet-demo.png',
+    description:
+      'Lamsa — UI concept / local demo for a Moroccan mobile wallet. Instant P2P transfers, QR Scan to Pay, request money and personal QR sharing. Demo wallet with no real money moves. Currently running locally.',
+    tags: [{ label: 'Flutter' }, { label: 'Dart' }, { label: 'Figma' }],
+    badge: 'Demo Concept',
+  },
 ]
 
 const cardVariants = {
@@ -150,8 +161,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {project.number}
           </span>
           <div className="flex flex-col pt-2 sm:pt-3 md:pt-4">
-            <span className="text-[#D7E2EA] text-xs sm:text-sm uppercase tracking-widest opacity-60">
+            <span className="flex flex-wrap items-center gap-2 text-[#D7E2EA] text-xs sm:text-sm uppercase tracking-widest opacity-60">
               {project.category}
+              {project.badge && (
+                <span className="px-2 py-0.5 text-[10px] uppercase tracking-widest rounded-full border border-[#D7E2EA]/30 text-[#D7E2EA]/70 opacity-100">
+                  {project.badge}
+                </span>
+              )}
             </span>
             <span
               className="text-[#D7E2EA] font-medium uppercase leading-tight"
